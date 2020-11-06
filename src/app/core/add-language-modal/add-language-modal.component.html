@@ -1,0 +1,51 @@
+<div class="modal fade" id="addLanguageModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Add New Language</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form #addLanguageForm="ngForm" (ngSubmit)="check(addLanguageForm)">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="" class="language">Language Name</label>
+                    <select name="language_name" id="language_name" #language_name=ngModel [(ngModel)]="this.language.languageName" required  class="form-control form-control-sm" ngModel>
+                        <option value="" selected disabled>Choose ...</option>
+                        <option value="en">English</option>
+                        <option value="fr">francais</option>
+                        <option value="nl">Nederlands</option>
+                        <option value="sp">Spanish</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="" class="language">Writing Level</label>
+                    <select name="writing_level" id="writing_level" #writing_level=ngModel [(ngModel)]="this.language.writingLevel" required class="form-control form-control-sm" ngModel>
+                        <option value="" selected disabled>Choose ...</option>
+                        <option [ngValue]="criteria" *ngFor="let criteria of this.criterias; let i = index">{{ criteria }}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="" class="language">Reading Level</label>
+                    <select name="reading_level" id="reading_level" #reading_level=ngModel class="form-control form-control-sm" [(ngModel)]="this.language.readingLevel" required ngModel>
+                        <option value="" selected disabled>Choose ...</option>
+                        <option *ngFor="let criteria of this.criterias; let i = index" value="{{ criteria }}">{{ criteria }}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="" class="language">Understanding Level</label>
+                    <select name="understanding_level" id="understanding_level" #understanding_level=ngModel [(ngModel)]="this.language.understandingLevel" required class="form-control form-control-sm" ngModel>
+                        <option value="" selected disabled>Choose ...</option>
+                        <option *ngFor="let criteria of this.criterias; let i = index" value="{{ criteria }}">{{ criteria }}</option>
+                    </select>
+                </div>          
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" [disabled]="!addLanguageForm.valid">Understood</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>

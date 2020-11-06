@@ -1,0 +1,63 @@
+<main class="main">
+    <div class="container change-language-items">
+
+        <span>
+            <h3>{{ this.pageTitle }} &nbsp;<span class="badge badge-secondary">3</span>&nbsp;</h3>
+        </span>
+        <span>
+            <a id="myBtnLearner" data-toggle="modal" data-target="#addLanguageModal" style="cursor: pointer;">
+                <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-arrow-right-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm5.646 10.646a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L9.793 7.5H5a.5.5 0 0 0 0 1h4.793l-2.147 2.146z"/>
+                </svg>
+            </a>
+        </span>
+        
+        
+        <hr class="mb-4">
+    
+        <ul class="code_language_large" style="margin-bottom:20px; list-style: none;">
+           
+            <a style="cursor: pointer;" class="Female ml-3" id="student_2" (click)="set('en')">
+                <li><small>English</small></li>
+            </a>
+    
+            <a style="cursor: pointer;" class="Male ml-3" id="student_3" (click)="set('fr')">
+                <li><small>Francais</small></li>
+            </a>
+    
+            <a style="cursor: pointer;" class="Female ml-3" id="student_4" (click)="set('sp')">
+                <li><small>Spanish</small></li>
+            </a>
+            
+        </ul>    
+       
+    </div>
+    <hr class="mb-4">
+
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-3">
+            
+            <app-single-language *ngFor="let lang of this.dataList" [language]="this.language" (dispatchLanguageEvent)="setUpdatedLanguage($event)"></app-single-language>
+            <app-single-language [language]="this.language" (dispatchLanguageEvent)="setUpdatedLanguage($event)"></app-single-language>
+            <app-single-language [language]="this.language" (dispatchLanguageEvent)="setUpdatedLanguage($event)"></app-single-language>
+            <app-single-language [language]="this.language" (dispatchLanguageEvent)="setUpdatedLanguage($event)"></app-single-language>
+            <app-single-language [language]="this.language" (dispatchLanguageEvent)="setUpdatedLanguage($event)"></app-single-language>
+         
+            
+            
+          </div>
+    </div>
+</main>
+
+
+
+
+
+  
+  <!-- Modal add Language -->
+  <app-add-language-modal></app-add-language-modal>
+
+
+  <!-- Modal update Language -->
+<!--   <app-update-language-modal [curlanguage]="sharingWithUpdateModalComponent"></app-update-language-modal> -->
+<app-update-language-modal [curlanguage]="this.language"></app-update-language-modal>

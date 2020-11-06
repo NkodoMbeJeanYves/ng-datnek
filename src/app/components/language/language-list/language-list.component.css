@@ -1,0 +1,60 @@
+#myBtn {
+    display: block; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none;
+  }
+
+
+  
+
+  ul.code_larguage_large {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+  }
+  .code_language_large{
+    font-size:16px;
+    line-height:24px;
+    width:100%;
+    margin:0 auto;
+}
+
+.code_language_large a{
+  display:block;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+  background: #fff;
+  padding:10px;
+  margin-top:3px;
+  display:inline-block;
+  width:200px;
+  text-decoration: none !important;
+}
+
+.code_language_large  a.Female:hover{
+
+  box-shadow: 1px 0px 5px 1px #72bf3b,
+  0 1px 1px 0 #72bf3b,
+  0 2px 1px -1px #72bf3b;
+}
+
+.code_language_large  a.Female.selected{
+  background: #ffc107;
+}
+
+.code_language_large  a.Male.selected{
+  background: #ffc107;
+}
+
+.code_language_large a.Male:hover{
+
+  box-shadow: 1px 0px 5px 1px #583bbf,
+  0 1px 1px 0 #72bf3b,
+  0 2px 1px -1px #72bf3b;
+}
