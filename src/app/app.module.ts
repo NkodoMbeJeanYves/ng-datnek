@@ -6,9 +6,7 @@ import { NgxUiLoaderRouterModule, NgxUiLoaderModule, NgxUiLoaderConfig, SPINNER,
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LanguageListComponent } from './components/language/language-list/language-list.component';
-import { NewLanguageComponent } from './components/language/new-language/new-language.component';
 import { SingleLanguageComponent } from './components/language/single-language/single-language.component';
-import { UpdateLanguageComponent } from './components/language/update-language/update-language.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpInterceptorService } from './services/http-interceptor.service';
 import { BuilderService } from './services/builder.service';
@@ -21,6 +19,7 @@ import { HeaderComponent } from './core/header/header.component';
 import { AddLanguageModalComponent } from './core/add-language-modal/add-language-modal.component';
 import { FormsModule } from '@angular/forms';
 import { UpdateLanguageModalComponent } from './core/update-language-modal/update-language-modal.component';
+import { LanguageService } from './components/language/language.service';
 
 
 
@@ -41,9 +40,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   declarations: [
     AppComponent,
     LanguageListComponent,
-    NewLanguageComponent,
     SingleLanguageComponent,
-    UpdateLanguageComponent,
     MainComponent,
     HeaderComponent,
     AddLanguageModalComponent,
@@ -73,7 +70,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   },
   BuilderService,
   SharedDataService,
-  TranslateService
+  TranslateService,
+  LanguageService,
   ],
   bootstrap: [AppComponent]
 })

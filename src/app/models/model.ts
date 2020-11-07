@@ -1,3 +1,4 @@
+
 export class Model {
     // primarykey of each model extended
     public primaryKey?: string;
@@ -11,6 +12,7 @@ export class Model {
     public modelInstance?: any; // instance ponctuelle du modele utilise
     // link on which ulpoad component will redirect user after uploaded file
     public redirectAfterUploadFileLink?: string;
+    private dictionary;
     constructor() {
         this.primaryKey = '';
         this.tableName = '';
@@ -25,17 +27,21 @@ export class Model {
     * for a best model management
     * In case if each model within the list contains array, we do not change anything on it
     */
-    replicateMember(emitter: Model) {
+    replicateMember(emitter: Model): Model {
+        // const dico = this.translateService.getDictionnaryObject;
+
         for (const key in emitter) {
             if (!Array.isArray(key)){
                 this[key] = emitter[key];
             }
+
         }
         // check and rewrite file field of each model
         if (emitter.hasOwnProperty('file')) {
             const key = 'file';
             if (emitter[key] !== null && emitter[key] !== undefined) {
-                // this[key]   = environment.API + emitter[key];
+                // display image
+                // this[key]   = environment.API + emitter[key]; 
             }
         }
         this.primaryKey = emitter[this.primaryColName];

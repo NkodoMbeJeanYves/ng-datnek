@@ -20,6 +20,17 @@ export class TranslateService {
       },
       languages: {
         pageTitle: 'All languages'
+      },
+      members: {
+        Intermediate: 'Intermediate',
+        High: 'High',
+        Novice: 'Novice',
+        Beginner: 'Beginner'
+      },
+      singleLanguage: {
+        readingLabel: 'Reading',
+        writingLabel: 'Writing',
+        understandingLabel: 'understanding'
       }
     },
     fr : {
@@ -31,6 +42,17 @@ export class TranslateService {
       },
       languages: {
         pageTitle: 'Toutes les langues'
+      },
+      members: {
+        Intermediate: 'Intermediaire',
+        High: 'Eleve',
+        Novice: 'Novice',
+        Beginner: 'Debutant'
+      },
+      singleLanguage: {
+        readingLabel: 'Lecture',
+        writingLabel: 'Ecriture',
+        understandingLabel: 'Comprehension'
       }
     },
     sp : {
@@ -42,6 +64,17 @@ export class TranslateService {
       },
       languages: {
         pageTitle: 'Todos los idiomas'
+      },
+      members: {
+        Intermediate: 'Intermedio',
+        High: 'Alto',
+        Novice: 'Principiante',
+        Beginner: 'Principiante'
+      },
+      singleLanguage: {
+        readingLabel: 'Leyendo',
+        writingLabel: 'Escritura',
+        understandingLabel: 'comprensión'
       }
     }
 

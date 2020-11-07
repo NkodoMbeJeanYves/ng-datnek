@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { Model } from '../models/model';
-
+import { countries } from 'src/app/core/countries';
 
 
 @Injectable({
@@ -24,6 +24,9 @@ export class SharedDataService {
   private messageKeySearch = new BehaviorSubject({});
   currentKeySearchAsObservable = this.messageKeySearch.asObservable();
 
+  // parameters from https://restcountries.eu/rest/v2/all 
+  private parameters = [];
+
   // it's also possible to fatch criteria from a database
   // but though it is only a test
   creteria = [
@@ -33,12 +36,10 @@ export class SharedDataService {
     'Beginner'
   ];
 
-  countries = [
-    {
-      key: 'en',
-      value: 'English'
-    }
-  ];
+
+  getParameters(): any[]{
+    return countries;
+  }
 
 
   setBackButtonLink($value): void {
@@ -92,7 +93,8 @@ export class SharedDataService {
     this.CurrentModelValue = CurrentModelValue;
   }
 
- 
+
+
 
 
 

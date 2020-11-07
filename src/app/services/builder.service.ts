@@ -304,8 +304,8 @@ uploadFileToServerWithProgress(formData: FormData, endpoint: string): Observable
   fetchAll() {
     return this.http.get<ClassDef.Model[]>(this.endPoint, { headers : this.options})
     .pipe(
-      retry(_fetchRetryCount),
-      catchError(this.handleError)
+      retry(_fetchRetryCount)
+      // catchError(this.handleError)
     ).subscribe(
       (data) => {
                     this.items = data as any;
@@ -506,6 +506,14 @@ uploadFileToServerWithProgress(formData: FormData, endpoint: string): Observable
       );
   }
 
+
+  /**
+   * @param item objet à supprimer, super objet avec le champs primaryKey, primaryColName
+   * @comment methode permettant de supprimer un objet dans la base de données
+   */
+  destroyWithoutSubscription(item: ClassDef.Model, separator: string = '/'): Observable<any> {
+    return this.http.delete(this.endPoint + `${separator}${item.primaryKey}`, { headers : this.options});
+  }
   /**
    *
    * @param parentItem in which we are going to make relationship with pivotIds array

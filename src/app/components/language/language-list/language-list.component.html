@@ -2,7 +2,7 @@
     <div class="container change-language-items">
 
         <span>
-            <h3>{{ this.pageTitle }} &nbsp;<span class="badge badge-secondary">3</span>&nbsp;</h3>
+            <h3>{{ this.pageTitle }} &nbsp;<span class="badge badge-secondary">{{ this.count }}</span>&nbsp;</h3>
         </span>
         <span>
             <a id="myBtnLearner" data-toggle="modal" data-target="#addLanguageModal" style="cursor: pointer;">
@@ -16,17 +16,27 @@
         <hr class="mb-4">
     
         <ul class="code_language_large" style="margin-bottom:20px; list-style: none;">
-           
-            <a style="cursor: pointer;" class="Female ml-3" id="student_2" (click)="set('en')">
+           <!-- Default Languages -->
+            <a style="cursor: pointer;" class="Female ml-3" id="student_2" (click)="set('eng')">
                 <li><small>English</small></li>
             </a>
     
-            <a style="cursor: pointer;" class="Male ml-3" id="student_3" (click)="set('fr')">
+            <a style="cursor: pointer;" class="Male ml-3" id="student_3" (click)="set('fra')">
                 <li><small>Francais</small></li>
             </a>
     
-            <a style="cursor: pointer;" class="Female ml-3" id="student_4" (click)="set('sp')">
+            <a style="cursor: pointer;" class="Female ml-3" id="student_4" (click)="set('spa')">
                 <li><small>Spanish</small></li>
+            </a>
+            <!-- Default Languages -->
+
+            <a 
+            style="cursor: pointer;"
+            *ngFor="let language of this.dataList; let i=index"
+            class="Female ml-3"
+            id="{{ language.languageCode }}"
+            (click)="set(language.languageCode)">
+                <li><small>{{ language.languageName }}</small></li>
             </a>
             
         </ul>    
@@ -36,28 +46,27 @@
 
     <div class="container">
         <div class="row row-cols-1 row-cols-md-3">
-            
-            <app-single-language *ngFor="let lang of this.dataList" [language]="this.language" (dispatchLanguageEvent)="setUpdatedLanguage($event)"></app-single-language>
-            <app-single-language [language]="this.language" (dispatchLanguageEvent)="setUpdatedLanguage($event)"></app-single-language>
-            <app-single-language [language]="this.language" (dispatchLanguageEvent)="setUpdatedLanguage($event)"></app-single-language>
-            <app-single-language [language]="this.language" (dispatchLanguageEvent)="setUpdatedLanguage($event)"></app-single-language>
-            <app-single-language [language]="this.language" (dispatchLanguageEvent)="setUpdatedLanguage($event)"></app-single-language>
-         
-            
-            
+            <!-- Sinlge-Language-component -->
+            <app-single-language 
+                [readingLabel]="readingLabel" 
+                [writingLabel]="writingLabel" 
+                [understandingLabel]="understandingLabel" 
+                *ngFor="let language of this.dataList;" 
+                [language]="language" 
+                (dispatchLanguageEvent)="setUpdatedLanguage($event)">
+            </app-single-language>
           </div>
     </div>
 </main>
 
-
-
-
-
-  
   <!-- Modal add Language -->
-  <app-add-language-modal></app-add-language-modal>
+  <app-add-language-modal 
+  [addNewlanguageTranslateObject]="addNewlanguageTranslateObject">
+  </app-add-language-modal>
 
 
   <!-- Modal update Language -->
-<!--   <app-update-language-modal [curlanguage]="sharingWithUpdateModalComponent"></app-update-language-modal> -->
-<app-update-language-modal [curlanguage]="this.language"></app-update-language-modal>
+    <app-update-language-modal 
+    [curlanguage]="this.language"
+    [updatelanguageTranslateObject]="updatelanguageTranslateObject">
+    </app-update-language-modal>

@@ -1,7 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
-import { TranslateService } from 'src/app/services/translate.service';
+import { SharedDataService } from 'src/app/services/shared-data.service';
+import { LanguageService } from '../language/language.service';
+
 
 @Component({
   selector: 'app-main',
@@ -15,20 +18,24 @@ export class MainComponent implements OnInit, OnDestroy {
   customMessage1 = '';
   customMessage2 = '';
 
+
   // access translation object within dictionnary
   member = 'main';
   dataSubscription: Subscription;
 
-  constructor(private translateService: TranslateService,
-              private toastr: ToastrService) {
+  constructor(private languageService: LanguageService,
+              private toastr: ToastrService,
+              private http: HttpClient,
+              private sData: SharedDataService
+              ) {
 
   }
 
   ngOnInit(): void {
-    this.translateService.start();
-    this.dataSubscription = this.translateService.getObservableLanguage.subscribe(
+    this.languageService.start();
+    this.dataSubscription = this.languageService.getObservableLanguage.subscribe(
       (dico) => {
-        console.log(dico[this.member]);
+        console.log(dico);
         this.welcomeMessage = dico[this.member].welcomeMessage;
         this.dashboardTitle = dico[this.member].dashboardTitle;
         this.customMessage1 = dico[this.member].customMessage1;
@@ -41,8 +48,11 @@ export class MainComponent implements OnInit, OnDestroy {
      this.dataSubscription.unsubscribe();
   }
 
-  change(value = 'en'): void {
-    this.translateService.setDictionnaryLanguage(value);
+  change(value = 'eng'): void {
+    this.languageService.setDictionnaryLanguage(value);
   }
+
+
+
 
 }

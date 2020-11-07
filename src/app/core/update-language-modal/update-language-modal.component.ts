@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Language } from 'src/app/models/language';
+import { BuilderService } from 'src/app/services/builder.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 
 @Component({
@@ -12,9 +15,18 @@ export class UpdateLanguageModalComponent implements OnInit {
   criterias = [];
   language: Language;
 
-  @Input() curlanguage: Language;
+  
+// load remote parameters from https://restcountries.eu/rest/v2/all
+languages = [];
 
-  constructor(private sData: SharedDataService) {
+  @Input() curlanguage: Language;
+  @Input() updatelanguageTranslateObject;
+
+  constructor(
+    private sData: SharedDataService,
+    private bs: BuilderService,
+    private toastr: ToastrService,
+    private router: Router) {
     this.language = new Language();
   }
 
@@ -23,7 +35,22 @@ export class UpdateLanguageModalComponent implements OnInit {
   }
 
   check(f): void {
-    console.log(f.value);
+    console.log(this.curlanguage);
+    console.log(this.updatelanguageTranslateObject);
+    // this.bs.updateWithoutSubscription(this.curlanguage).subscribe(
+    //   (data)  =>  {
+    //     this.router.navigate(['/languages']);
+    //     this.toastr.success('item updated successfully!', 'Success', {
+    //       positionClass: 'toastr-top-right',
+    //       timeOut: 0, closeButton: true,
+    //     });
+    //   // trigger btnClose button of modal
+    //     this.bs.triggerClickEventOnHTMLElement('btnCloseModalUpdateLanguage');
+    //   },
+    //   (error) =>  {
+    //     this.toastr.warning('Something wrong', 'error');
+    //   }
+    // );
   }
 
 }
