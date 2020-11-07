@@ -28,8 +28,7 @@ export class SingleLanguageComponent implements OnInit {
 
   ngOnInit(): void {
     this.index = this.language.primaryKey;
-    this.index2 = `#${this.index}`; 
-    console.log(this.index);
+    this.index2 = `#${this.index}`;
   }
 
   // share current language object with language-list-component
@@ -39,11 +38,11 @@ export class SingleLanguageComponent implements OnInit {
   }
 
   destroyMe(): void{
-    console.log(this.language);
     this.bs.destroyWithoutSubscription(this.language).subscribe(
        (data) => {
          if ( data.message !== undefined) {
-            this.toastr.success(`data.message`, 'Delete completed!');
+            this.toastr.info(`${data.message}`, 'Delete completed!');
+            this.bs.removeItemsToList(this.language);
          } else {
            this.toastr.warning('something wrong happened! You may check the console', 'Error occured');
          }

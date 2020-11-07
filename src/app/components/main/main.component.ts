@@ -35,7 +35,6 @@ export class MainComponent implements OnInit, OnDestroy {
     this.languageService.start();
     this.dataSubscription = this.languageService.getObservableLanguage.subscribe(
       (dico) => {
-        console.log(dico);
         this.welcomeMessage = dico[this.member].welcomeMessage;
         this.dashboardTitle = dico[this.member].dashboardTitle;
         this.customMessage1 = dico[this.member].customMessage1;

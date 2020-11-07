@@ -29,7 +29,12 @@ languages = [];
   }
 
   ngOnInit(): void {
-    this.criterias = this.sData.creteria;
+    const dictionary = (this.languageService.getDictionnaryObject() as any).members;
+
+
+    this.criterias = this.sData.creteria.map(item => {
+      return dictionary[item];
+    });
     // load a list of countries and its related informations
     this.languages = this.languageService.getcountriesParameters();
   }

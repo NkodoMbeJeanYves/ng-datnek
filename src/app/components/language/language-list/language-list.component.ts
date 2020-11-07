@@ -72,10 +72,8 @@ private dictionary;
     this.bs.fetchAll();
     this.dataSubscription = this.bs.instanceSubject.subscribe(
         (data)  =>  {
-          this.translateData(data as any);
-          this.dataList = data as any;
+          this.dataList = this.translateData(data as any);
           this.count = data.length ?? 0;
-          console.log(data);
         }
       );
   }
@@ -84,6 +82,7 @@ private dictionary;
   set($lang): void {
     if ($lang === 'spa' || $lang === 'eng' || $lang === 'fra') {
       this.languageService.setDictionnaryLanguage($lang);
+      this.bs.reloadPage('/languages');
     } else {
       this.toastr.warning('Dictionary is not available yet!', 'Translation Setting');
     }
@@ -92,7 +91,6 @@ private dictionary;
   // fetch updated language from single language component
   setUpdatedLanguage($event): void {
     this.language = $event;
-    this.bs.reloadPage('/languages');
   }
 
   ngOnDestroy(): void {
@@ -103,21 +101,14 @@ private dictionary;
   /**
    * Apply language after fetching data
    */
-  translateData(data: []): void {
-    data.forEach((item: Language) => {
-      for (const key in item) {
-        if (!Array.isArray(key)){
-            if ( key === 'readingLevel' || key === 'writingLevel' || key === 'understandingLevel') {
-                this[key] = this.dictionary.members[item[key]];
-                
-            } else {
-                this[key] = item[key];
-                
-            }
-        }
-
-      }
+  translateData(data: []): any[] {
+    const Data = data.map((item: Language) => {
+      item.readingLevel = this.dictionary.members[item.readingLevel];
+      item.writingLevel = this.dictionary.members[item.writingLevel];
+      item.understandingLevel = this.dictionary.members[item.understandingLevel];
+      return item;
     });
+    return Data;
   }
 
   applyLanguageTranslationOverComponents(translate): void {

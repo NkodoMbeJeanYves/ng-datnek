@@ -159,7 +159,6 @@ export class LanguageService {
     this.defaultLang = value;
     this.lg.next(this.translator[this.defaultLang]);
     this.toastr.success(`Language was successfully setting to ${value}!`, 'Language Setting');
-    return;
   }
 
   getDictionnaryObject(): {} {
@@ -183,7 +182,6 @@ export class LanguageService {
 
     this.sData.getParameters().forEach(element => {
       const item = element as any;
-      const selectedLanguages = [];
       item.languages.forEach(
         language => {
           Countries.push(language);
